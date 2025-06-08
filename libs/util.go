@@ -120,7 +120,12 @@ func Fetch(url string, transform func([]byte) ([]Project, error)) ([]Project, er
 func GetCursorProjectsFilePath() string {
 	// 環境変数があれば優先
 	if env := os.Getenv(CursorProjectsEnv); env != "" {
-		return ExpandHomePath(env)
+		// 環境変数の値が $home で始まる場合は展開
+		if strings.HasPrefix(env, HomePathVariable) {
+			return ExpandHomePath(env)
+		}
+		// フルパスの場合はそのまま返す
+		return env
 	}
 	home := os.Getenv("HOME")
 	if home == "" {
