@@ -129,12 +129,4 @@ func TestGetCursorProjectsFilePath(t *testing.T) {
 	if got != want {
 		t.Errorf("GetCursorProjectsFilePath default: got %s, want %s", got, want)
 	}
-
-	// 環境変数で上書き
-	// os.Setenv("CURSOR_PROJECTS_FILE", "~/my/custom/projects.json")
-	// want = filepath.Join(home, "my/custom/projects.json")
-	// got = libs.GetCursorProjectsFilePath()
-	// if got != want {
-	// 	t.Errorf("GetCursorProjectsFilePath env: got %s, want %s", got, want)
-	// }
 }
